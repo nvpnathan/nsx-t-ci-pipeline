@@ -68,10 +68,10 @@ if [ "$NSX_NETWORKING_ENABLED" == "true" ]; then
   echo "Host name associated with NSX Manager cert: $NSX_MANAGER_CERT_ADDRESS"
 
   # Get all certs from the nsx manager
-  openssl s_client -host $NSX_ADDRESS \
-                   -port 443 -prexit -showcerts \
-                   </dev/null 2>/dev/null  \
-                   >  /tmp/nsx_manager_all_certs.log
+  #openssl s_client -host $NSX_ADDRESS \
+  #                 -port 443 -prexit -showcerts \
+  #                 </dev/null 2>/dev/null  \
+  #                 >  /tmp/nsx_manager_all_certs.log
 
   # Get the very last CA cert from the showcerts result
   cat /tmp/nsx_manager_all_certs.log \
