@@ -68,17 +68,17 @@ if [ "$NSX_NETWORKING_ENABLED" == "true" ]; then
   echo "Host name associated with NSX Manager cert: $NSX_MANAGER_CERT_ADDRESS"
 
   # Get all certs from the nsx manager
-  #openssl s_client -host $NSX_ADDRESS \
-  #                 -port 443 -prexit -showcerts \
-  #                 </dev/null 2>/dev/null  \
-  #                 >  /tmp/nsx_manager_all_certs.log
+  openssl s_client -host $NSX_ADDRESS \
+                   -port 443 -prexit -showcerts \
+                   </dev/null 2>/dev/null  \
+                   >  /tmp/nsx_manager_all_certs.log
 
   # Get the very last CA cert from the showcerts result
-  cat /tmp/nsx_manager_all_certs.log \
-                    |  awk '/BEGIN /,/END / {print }' \
-                    | tail -40                        \
-                    |  awk '/BEGIN /,/END / {print }' \
-                    >  /tmp/nsx_manager_cacert.log
+  #cat /tmp/nsx_manager_all_certs.log \
+  #                  |  awk '/BEGIN /,/END / {print }' \
+  #                  | tail -40                        \
+  #                  |  awk '/BEGIN /,/END / {print }' \
+  #                  >  /tmp/nsx_manager_cacert.log
 
   # Strip newlines and replace them with \r\n
   cat /tmp/nsx_manager_cacert.log | tr '\n' '#'| sed -e 's/#/\r\n/g'   > /tmp/nsx_manager_edited_cacert.log
