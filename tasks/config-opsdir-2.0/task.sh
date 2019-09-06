@@ -81,7 +81,7 @@ if [ "$NSX_NETWORKING_ENABLED" == "true" ]; then
                     >  /tmp/nsx_manager_cacert.log
 
   # Strip newlines and replace them with \r\n
-  #cat /tmp/nsx_manager_cacert.log | tr '\n' '#'| sed -e 's/#/\r\n/g'   > /tmp/nsx_manager_edited_cacert.log
+  cat /tmp/nsx_manager_cacert.log | tr '\n' '#'| sed -e 's/#/\r\n/g'   > /tmp/nsx_manager_edited_cacert.log
   export NSX_CA_CERTIFICATE=$(cat /tmp/nsx_manager_cacert.log)
 
   iaas_configuration=$(echo $iaas_configuration | jq \
