@@ -444,14 +444,39 @@ om-linux \
 
 echo "Finished configuring NSX/vCenter properties"
 
-PKS_TELEMETRY=${PKS_TELEMETRY:-disabled}
+#PKS_TELEMETRY=${PKS_TELEMETRY:-disabled}
+#pks_telemetry_properties=$(
+#  jq -n \
+#  --arg pks_telemetry_enabled "$PKS_TELEMETRY" \
+#  '{
+#        ".properties.telemetry_selector": {
+#          "value": $pks_telemetry_enabled
+#        }
+#    }
+#  '
+#)
+
+#om-linux \
+#  -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
+#  -u $OPSMAN_USERNAME \
+#  -p $OPSMAN_PASSWORD \
+#  --skip-ssl-validation \
+#  configure-product \
+#  --product-name pivotal-container-service \
+#  --product-properties "$pks_telemetry_properties"
+
+#echo "Finished configuring Telemetry properties"
 pks_telemetry_properties=$(
   jq -n \
-  --arg pks_telemetry_enabled "$PKS_TELEMETRY" \
+    --arg pks_ceip_level "$PKS_CEIP_LEVEL" \
+    --arg pks_purpose "$PKS_PURPOSE" \
   '{
-        ".properties.telemetry_selector": {
-          "value": $pks_telemetry_enabled
-        }
+      ".properties.telemetry_selector": {
+        "value": $pks_ceip_level
+      },
+      ".properties.telemetry_installation_purpose_selector": {
+        "value": $pks_purpose
+      }
     }
   '
 )
