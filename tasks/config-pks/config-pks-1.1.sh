@@ -181,6 +181,9 @@ else
   '{
     ".properties.uaa": {
       "value": "internal"
+    },
+    ".properties.oidc_selector": {
+      "value": "disabled"
     }
   }'
   )
