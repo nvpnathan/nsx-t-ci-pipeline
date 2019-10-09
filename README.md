@@ -98,7 +98,7 @@ Note: Both Harbor and PKS use vms (harbor app vm and PKS controller vm respectiv
 
 Sample config for PKS:
 ```
-# Create DNS entry in the loadbalancer and DNAT/SNAT entries for following
+# Creates DNS entry in the loadbalancer and DNAT/SNAT entries for following
 pks_tile_system_domain: pks.test.corp.com
 # Just provide the prefix like uaa or api for domain_prefix.
 # The prefix together with system domain would be used like api.pks.test.corp.com or uaa.pks.test.corp.com
