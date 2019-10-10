@@ -269,6 +269,7 @@ groups:
   jobs:
   - config-pks-controller-after-install
   - config-pks-controller-ad-groups
+  - delete-pks-cli-users
 
 - name: wipe
   jobs:
@@ -585,6 +586,15 @@ jobs:
   - task: config-pks-admin-ad-group
     file: nsx-t-ci-pipeline/tasks/config-pks-ad-group/task.yml
     params: *pks-ad-config-params
+
+- name: delete-pks-cli-users
+  plan:
+  - aggregate:
+    - get: nsx-t-ci-pipeline
+
+  - task: config-pks-admin-ad-group
+    file: nsx-t-ci-pipeline/tasks/config-pks-ad-group/task.yml
+    params: *pks-cli-config-params
 
 - name: delete-clusters
   plan:
