@@ -53,7 +53,7 @@ function upload_stemcells() (
         # Find and download latest stemcell
         if [[ "$minor_version" != "" && "$major_version" != "" ]]; then
           echo "Looking for newer stemcells versions"
-          for newer_version in $(seq 100 -1 $minor_version)
+          for newer_version in $(seq 115 -1 $minor_version)
             do
               stagged=""
               # Search to see if newer stemcell already staged
